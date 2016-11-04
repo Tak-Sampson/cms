@@ -1,0 +1,9 @@
+<% if session[:message] %>
+  <div class="message"> <%= session.delete(:message) %> </div>
+<% end %>
+
+<form action="/users/signup" method="post">
+  Create a Username: <input name="username" type="text" value=<%= params[:username] %> ></input><br>
+  Choose a Password: <input name="password" type="password"></input><br>
+  <button type='submit'>Create Account</button>
+</form>

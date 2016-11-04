@@ -1,0 +1,34 @@
+<% if session[:message] %>
+  <div class="message"> <%= session.delete(:message) %> </div>
+<% end %>
+
+<ul>
+  <% @files.each do |filename| %>
+    <li>
+      <a href="/<%= filename %>"><%= filename %></a>
+      <a style="padding-left:2em;padding-right:2em;" href="/<%= filename %>/edit">edit</a>
+      <form class="inline" action="/<%= filename %>/duplicate" method="post" style="padding-left:2em;">
+        <button type="submit">duplicate</button>
+      </form>
+      <form class="inline" action="/<%= filename %>/delete" method="post" style="padding-left:2em;">
+        <button type="submit">delete</button>
+      </form>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <a href="/new">New Document</a>
+</div>
+
+<div class="signed_in">
+  <form class="inline" action="/users/signout" method="post">
+    Signed in as <%= session[:signed_in] %> <button type='submit'>Sign Out</button>
+  </form>
+</div>
+
+<div>
+  <form action="/users/signin" method="get">
+    <button type='submit' font-size='10'>Sign in  as different user</button>
+  </form>
+</div>
